@@ -1,12 +1,13 @@
-import neural_network as nn
+import NeuralNetwork as nn
 import numpy as np
 import prep_data_loader as data
 from PIL import Image
 
 # x = np.array([[1,0],[0,1],[0,0],[1,1]])
 # y = np.array([[0],[0],[1],[1]])
-x = data.learn_data_array
-y = data.learn_target_array
+x = np.array(data.learn_data_array)
+y = np.array(data.learn_target_array)
+
 ans_arr = data.answer_array
 
 brain = nn.NeuralNetwork(784, 65, 6)
@@ -15,9 +16,8 @@ print(y[1],' ----- y1')
 print(x[1],' ----- x1')
 
 def teach():
-    for i in range(1):
-        for j in range(len(x)):
-            brain.train([x[j]], y[j])
+    for i in range(100):
+        brain.teach(x, y)
     print('1 epoch done')
 print(ans_arr)
 
