@@ -1,23 +1,21 @@
 import numpy as np
 
-#Sigmoid Function
 def sigmoid (x):
     return 1/(1 + np.exp(-x))
 
-#Derivative of Sigmoid Function
 def derivatives_sigmoid(x):
     return x * (1 - x)
 class NeuralNetwork:
 
     def __init__(self, inputs, hiddens, outputs):
-        #Variable initialization
-        self.epoch=1 #Setting training iterations
-        self.lr=0.1 #Setting learning rate
-        self.inputlayer_neurons = inputs #number of features in data set
-        self.hiddenlayer_neurons = hiddens #number of hidden layers neurons
-        self.output_neurons = outputs #number of neurons at output layer
 
-        #weight and bias initialization
+        self.epoch=1
+        self.lr=0.1
+        self.inputlayer_neurons = inputs
+        self.hiddenlayer_neurons = hiddens
+        self.output_neurons = outputs
+
+
         self.wh= 2*np.random.uniform(size=(self.inputlayer_neurons,self.hiddenlayer_neurons))-1
         self.bh= 2*np.random.uniform(size=(1,self.hiddenlayer_neurons))-1
         self.wout= 2*np.random.uniform(size=(self.hiddenlayer_neurons,self.output_neurons))-1
@@ -56,18 +54,18 @@ class NeuralNetwork:
             self.bh += np.sum(d_hiddenlayer, axis=0,keepdims=True) *self.lr
 
 #Input array
-X=np.array([[1,0],[0,1],[0,0],[1,1]])
+# X=np.array([[1,0],[0,1],[0,0],[1,1]])
 
 #Output
-y=np.array([[1],[1],[0], [0]])
-nn = NeuralNetwork(2,2,1)
-print(nn.feedforward([1,0]))
-print(nn.feedforward([1,1]))
-print(nn.feedforward([0,0]))
-print(nn.feedforward([0,1]))
-nn.teach(X,y)
+# y=np.array([[1],[1],[0], [0]])
+# nn = NeuralNetwork(2,2,1)
+# print(nn.feedforward([1,0]))
+# print(nn.feedforward([1,1]))
+# print(nn.feedforward([0,0]))
+# print(nn.feedforward([0,1]))
+# nn.teach(X,y)
 #
-print(nn.feedforward([1,0]))
-print(nn.feedforward([1,1]))
-print(nn.feedforward([0,0]))
-print(nn.feedforward([0,1]))
+# print(nn.feedforward([1,0]))
+# print(nn.feedforward([1,1]))
+# print(nn.feedforward([0,0]))
+# print(nn.feedforward([0,1]))
